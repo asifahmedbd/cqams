@@ -38,6 +38,14 @@ Route::middleware(['auth', 'checkrole:admin'])->group(function () {
     Route::resource('/admin/attributes', 'AttributesController');
     Route::resource('/admin/products', 'ProductController');
     Route::post('/get-product-details', 'ProductController@getProductDetails')->name('get-product-details');
+
+    //Institution
+    Route::get('/admin/addInstitution', 'InstituteController@addInstitutionForm')->name('add-institute');
+    Route::get('/admin/institutionList', 'InstituteController@institutionList')->name('show-institutes');
+    Route::post('/admin/insitution/save', 'InstituteController@institutionSave');
+    Route::get('/admin/edit/{id}/institute', 'InstituteController@institutionEdit');
+    Route::get('/getDistrict/{division}', 'InstituteController@getDistrict');
+    Route::get('/getUpazila/{district}', 'InstituteController@getUpazila');
 });
 
 
