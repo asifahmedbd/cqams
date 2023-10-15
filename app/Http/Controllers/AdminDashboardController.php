@@ -6,16 +6,14 @@ use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 use App\Models\User;
 use App\Models\Product;
+use Session;
 
 class AdminDashboardController extends Controller
 {
     
     public function index(){
 
-        $id = Auth::user()->id;
-        $admin_info = User::find($id);
-        session(['admin_info' => $admin_info]);
-        
+        $admin_info = Session::get('admin_info'); 
         return view('admin.dashboard', compact('admin_info'));
     }
 

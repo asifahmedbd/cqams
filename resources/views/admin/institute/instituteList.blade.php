@@ -1,7 +1,8 @@
 @extends('admin.layouts.app')
 
 @section('content')
-  
+  <link href="https://cdn.datatables.net/v/bs5/dt-1.13.6/datatables.min.css" rel="stylesheet">
+  <script src="https://cdn.datatables.net/v/bs5/dt-1.13.6/datatables.min.js"></script>
   <div class="container-xxl flex-grow-1 container-p-y">
     <h4 class="py-3 mb-4">Institution Lists</h4>
 
@@ -13,7 +14,7 @@
             </div>
             <div class="card-body">
                 <div class="table-responsive text-nowrap">
-                  <table class="table">
+                  <table class="table" id="institution_lists">
                     <thead>
                       <tr>
                         <th>ID</th>
@@ -35,7 +36,7 @@
                         <td>@if(isset($item->upazila)){{$item->upazila->full_name}}@endif</td>
                         <td>
                           @foreach($inst_types as $key=>$tid)
-                            <span class="badge bg-primary">{{ $instTypes[$tid]->name }}</span><br>
+                            <span class="badge bg-primary">{{ $instTypes[$tid] }}</span><br>
                           @endforeach
                         </td>
                         <td>
@@ -73,6 +74,7 @@
   <script type="text/javascript">
     $(document).ready(function() {
         
+        new DataTable('#institution_lists');
     });
   </script>
 @endsection

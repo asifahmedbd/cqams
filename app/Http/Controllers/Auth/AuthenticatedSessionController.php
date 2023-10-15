@@ -9,6 +9,8 @@ use Illuminate\Http\RedirectResponse;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\View\View;
+use App\Models\User;
+use Session;
 
 class AuthenticatedSessionController extends Controller
 {
@@ -28,8 +30,9 @@ class AuthenticatedSessionController extends Controller
         $request->authenticate();
 
         $request->session()->regenerate();
+        $this->setUserSession();
 
-        $redirectPath = ($request->user()->role == 'admin') ? '/admin/dashboard' : '/dashboard';
+        $redirectPath = '/admin/dashboard';
 
         return redirect()->intended($redirectPath);
     }
@@ -46,5 +49,15 @@ class AuthenticatedSessionController extends Controller
         $request->session()->regenerateToken();
 
         return redirect('/');
+    }
+
+    /**
+     * Set admin session.
+     */
+    public function setUserSession()
+    {
+        $id = Auth::user()->id;
+        $admin_info = User::find($id);
+        Session::put('admin_info', $admin_info);
     }
 }

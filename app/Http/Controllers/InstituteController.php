@@ -15,6 +15,7 @@ use App\Models\EducationBoard;
 use Alert;
 use Hash;
 use validate;
+use Session;
 
 class InstituteController extends Controller
 {
@@ -27,8 +28,12 @@ class InstituteController extends Controller
 		$breadcrumb = ['Institution','Institution List'];
     	$pageName   = "Institution" ;
     	$school = School::orderby('school_name','asc')->get();
-    	$admin_info = session('admin_info');
-    	$instTypes = InstitutionType::get();
+    	$admin_info = Session::get('admin_info'); 
+    	$institution_types = InstitutionType::get();
+    	$instTypes = array();
+    	foreach ($institution_types as $data) {
+    		$instTypes[$data->id] = $data->name;
+    	}
     	//dd($instTypes);
 		return view($this->viewFolderPath.'/instituteList',compact('breadcrumb','pageName','school', 'admin_info', 'instTypes'));
 	}
@@ -40,7 +45,7 @@ class InstituteController extends Controller
     	$eduBoard = EducationBoard::orderby('board_title','asc')->get();
     	$type = InstitutionType::get();
     	$otherSchool = School::where([['is_active',1]])->get();
-    	$admin_info = session('admin_info');
+    	$admin_info = Session::get('admin_info'); 
 		return view($this->viewFolderPath.'/instituteForm',compact('breadcrumb','pageName','otherSchool','division','eduBoard', 'admin_info', 'type'));
 	}
 
@@ -56,7 +61,7 @@ class InstituteController extends Controller
             'email'=>'required',
             'mobile'=>'required'
         ]);
-		$admin_info = session('admin_info');
+		$admin_info = Session::get('admin_info'); 
 		if (isset($request->osid)) {
 			$institute = School::findorfail($request->osid);
 			$schoolId = $institute->school_id;
@@ -139,7 +144,7 @@ class InstituteController extends Controller
     	$district = District::where('division_id',$school->division_id)->orderby('full_name','asc')->get();
     	$upazila = Upazila::where('district_id',$school->district_id)->orderby('full_name','asc')->get();
     	$eduBoard = EducationBoard::orderby('board_title','asc')->get();
-   		$admin_info = session('admin_info');
+   		$admin_info = Session::get('admin_info'); 
     	$type = InstitutionType::get();
     	$otherSchool = School::where([['is_active',1]])->get();
 

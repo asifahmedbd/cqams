@@ -80,9 +80,11 @@
                       <select class="js-example-basic-multiple" name="inst_type[]" multiple="multiple">
                         <option value="">Select type</option>
                           @foreach($type as $types=>$typ)
-                            @php
-                              $inst_types = json_decode($school->type);
-                            @endphp
+                              @if(isset($school->type))
+                                @php
+                                  $inst_types = json_decode($school->type, true);
+                                @endphp
+                              @endif
                           <option @if(isset($school) && (in_array($typ->id, $inst_types))) selected @endif value="{{$typ->id}}">{{$typ->name}}</option>
                           @endforeach
                       </select>

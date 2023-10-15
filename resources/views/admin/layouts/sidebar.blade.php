@@ -55,7 +55,7 @@
       <span class="app-brand-text demo menu-text fw-bold ms-2">CQAMS</span>
     </a>
 
-    <a href="javascript:void(0);" class="layout-menu-toggle menu-link text-large ms-auto d-block d-xl-none">
+    <a href="javascript:void(0);" class="layout-menu-toggle menu-link text-large ms-auto">
       <i class="bx bx-chevron-left bx-sm align-middle"></i>
     </a>
   </div>
@@ -103,12 +103,12 @@
       </a>
       <ul class="menu-sub">
         <li class="menu-item">
-          <a href="pages-account-settings-account.html" class="menu-link">
+          <a href="{{ route('scale-list') }}" class="menu-link">
             <div data-i18n="Account">Scale Entry</div>
           </a>
         </li>
         <li class="menu-item">
-          <a href="pages-account-settings-notifications.html" class="menu-link">
+          <a href="{{ route('scale-set') }}" class="menu-link">
             <div data-i18n="Notifications">Scale Set Entry</div>
           </a>
         </li>
@@ -119,7 +119,7 @@
       </a>
       <ul class="menu-sub">
         <li class="menu-item">
-          <a href="pages-account-settings-account.html" class="menu-link">
+          <a href="{{ route('manage-session') }}" class="menu-link">
             <div data-i18n="Account">Add Session</div>
           </a>
         </li>
@@ -137,22 +137,40 @@
       </a>
       <ul class="menu-sub">
         <li class="menu-item">
-          <a href="pages-account-settings-account.html" class="menu-link">
+          <a href="{{ route('question-category') }}" class="menu-link">
             <div data-i18n="Account">Question Categories</div>
           </a>
         </li>
         <li class="menu-item">
-          <a href="pages-account-settings-notifications.html" class="menu-link">
+          <a href="{{ route('question-subcategory') }}" class="menu-link">
             <div data-i18n="Notifications">Sub Categories</div>
-          </a>
-        </li>
-        <li class="menu-item">
-          <a href="pages-account-settings-notifications.html" class="menu-link">
-            <div data-i18n="Notifications">Question Entry</div>
           </a>
         </li>
       </ul>
     </li>
+
+    <li class="menu-header small text-uppercase">
+      <span class="menu-header-text">Question Settings</span>
+    </li>
+    <li class="menu-item">
+      <a href="javascript:void(0);" class="menu-link menu-toggle">
+        <i class="menu-icon tf-icons bx bx-dock-top"></i>
+        <div data-i18n="Account Settings">Manage Questions</div>
+      </a>
+      <ul class="menu-sub">
+        <li class="menu-item">
+          <a href="{{ route('tqams-questions') }}" class="menu-link">
+            <div data-i18n="Notifications">Question Entry</div>
+          </a>
+        </li>
+        <li class="menu-item">
+          <a href="{{ route('schoolwise-evaluations') }}" class="menu-link">
+            <div data-i18n="Notifications">Manage Evaluation</div>
+          </a>
+        </li>
+      </ul>
+    </li>
+
 
     <li class="menu-header small text-uppercase">
       <span class="menu-header-text">CQAMS Data</span>
@@ -181,8 +199,8 @@
       </a>
       <ul class="menu-sub">
         <li class="menu-item">
-          <a href="pages-account-settings-account.html" class="menu-link">
-            <div data-i18n="Account">Session-wise Report</div>
+          <a href="{{ route('tqams-reports') }}" class="menu-link">
+            <div data-i18n="Account">Institution-wise Report</div>
           </a>
         </li>
         <li class="menu-item">
